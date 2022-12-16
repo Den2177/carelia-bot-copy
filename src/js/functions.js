@@ -72,9 +72,13 @@ function sendData() {
     }
     
     var response = $http.post("https://api.dev.doctis.app/api/remote-monitoring/calling_result", {
-        bodyType: 'json',
+        dataType: 'json',
         body: bodyData,
     });
+    
+    if (response.isOk) {
+        $reactions.transition("/newNode_31");
+    }
 }
 
 function getPatientId() {
@@ -87,4 +91,33 @@ function getCallId() {
 
 function echo(data) {
     log(toPrettyString(data));
+}
+
+/*HttpRequest:
+            url = https://api.dev.doctis.app/api/remote-monitoring/change_owner_type
+            method = POST
+            dataType = 
+            # headers = [{"ApiKey": "a9db7c01-e309-4a61-b04d-faffdfd020c0"}]
+            body = {"callId":"{{$session.rawRequest.originateData.payload.call_id}}","ownerType": "{{0}}"}
+            okState = /newNode_32
+            errorState = /newNode_32
+            timeout = 0
+            vars = */
+            
+function changeOwnerType() {
+    var $session = ctx().session;
+    
+    var bodyData = {
+        ownerType: "0",
+        callId: getCallId(),
+    }
+    
+    var response = $http.post("https://api.dev.doctis.app/api/remote-monitoring/change_owner_type", {
+        dataType: 'json',
+        body: bodyData,
+    });
+    
+    $reactions.transition("/newNode_32");
+    
+    echo(response);
 }

@@ -291,21 +291,14 @@ theme: /
 
     state: zapros
         script: 
+            $dialer.hangUp();
             sendData();
     state: newNode_31
         EndSession:
     
     state: zapros1
-        HttpRequest:
-            url = https://api.dev.doctis.app/api/remote-monitoring/change_owner_type
-            method = POST
-            dataType = 
-            # headers = [{"ApiKey": "a9db7c01-e309-4a61-b04d-faffdfd020c0"}]
-            body = {"callId":"{{$session.rawRequest.originateData.payload.call_id}}","ownerType": "{{0}}"}
-            okState = /newNode_32
-            errorState = /newNode_32
-            timeout = 0
-            vars = 
+        script:
+            changeOwnerType();
     
     state: newNode_32
         TransferCallToOperator:
