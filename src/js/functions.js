@@ -6,7 +6,10 @@ function handleTopAndBottomPressure() {
         
         var topDavl = $parseTree.value;
         
-        if (!validatePressure(topDavl, true)) return;
+        if (!validatePressure(topDavl, true)) {
+            sendTextResponse("Пожалуйста, назовите давление от сорока до трехсот");
+            return;
+        }
         
         $session.topDavl = $parseTree.value; 
         sendTextResponse("А теперь назовите нижнее артериальное давление");
@@ -18,7 +21,10 @@ function handleTopAndBottomPressure() {
     if (!$session.bottomDavl) {
         var bottomDavl = $parseTree.value;
         
-        if (!validatePressure(bottomDavl, false)) return;
+        if (!validatePressure(bottomDavl, false)) {
+            sendTextResponse("Пожалуйста, назовите давление от шестидесяти до ста восьмидесяти");
+            return;
+        }
         
         $session.bottomDavl = bottomDavl;
         
@@ -37,8 +43,10 @@ function handleFullPressure() {
     var bottomDavl = $parseTree.Number[1].value;
     
     if (!validatePressure(topDavl, true) || !validatePressure(bottomDavl, false)) {
+        sendTextResponse("Пожалуйста, назовите давление от сорока на шестьдесят до триста на сто восьмидесят");
         return;
     }
+    
     
     $session.artDavl = topDavl + '/' + bottomDavl;
     
@@ -148,7 +156,7 @@ function validatePressure(value, isTop) {
 
     if (isTop) {
         if (value < 40 || value > 300) {
-            sendTextResponse("Пожалуйста, назовите давление от сорока на шестьдесят до трехсот на сто восемьдесят");
+            
             $session.topDavl = null;
             $session.bottomDavl = null;
             $reactions.transition('/newNode_1');
@@ -160,7 +168,7 @@ function validatePressure(value, isTop) {
         
     } else if (!isTop) {
          if (value < 60 || value > 180) {
-            sendTextResponse("Пожалуйста, назовите давление от сорока на шестьдесят до трехсот на сто восемьдесят");
+            
             $session.bottomDavl = null;
             $session.topDavl = null;
             $reactions.transition('/newNode_1');
