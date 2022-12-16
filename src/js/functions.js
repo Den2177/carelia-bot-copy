@@ -2,8 +2,6 @@ function handleTopAndBottomPressure() {
     var $session = ctx().session;
     var $parseTree = ctx().parseTree;
     
-    
-    
     if (!$session.topDavl) {
         $session.topDavl = $parseTree.value; 
         sendTextResponse("А теперь назовите нижнее артериальное давление");
@@ -30,22 +28,13 @@ function handleTopAndBottomPressure() {
     }
 }
 
-function validatePressure() {
-    
-    return true;
-}
-
 function handleFullPressure() {
     var $parseTree = ctx().parseTree;
     var $session = ctx().session;
     var topDavl = $parseTree.Number[0].value;
     var bottomDavl = $parseTree.Number[1].value;
     
-    if (topDavl <= 40 || bottomDavl <= 60 || topDavl >= 300 || bottomDavl >= 180) {
-        sendTextResponse("Пожалуйста, назовите давление от сорока на шестьдесят до трехсот на сто восемьдесят");
-        $reactions.transition('/newNode_1');
-        return;
-    }
+    if (!validatePressure(topDavl) && !validatePressure(bottomDavl, false)) return;
     
     $session.artDavl = topDavl + '/' + bottomDavl;
     
@@ -148,4 +137,29 @@ function changeOwnerType() {
     $reactions.transition("/newNode_32");
     
     echo(response);
+}
+
+function validatePressure(value, isTop = true) {
+    if (isTop) {
+        if (value < 40 || value > 300) {
+            sendTextResponse("Пожалуйста, назовите давление от сорока на шестьдесят до трехсот на сто восемьдесят");
+            $session.topDavl = null;
+            $reactions.transition('/newNode_1');
+            
+            return false;
+        }
+        
+        return true;
+        
+    } else if (!isTop) {
+         if (value < 60 || value > 180) {
+            sendTextResponse("Пожалуйста, назовите давление от сорока на шестьдесят до трехсот на сто восемьдесят");
+            $session.bottomDavl = null;
+            $reactions.transition('/newNode_1');
+            
+            return false;
+        }
+        
+        return true;
+    }
 }
