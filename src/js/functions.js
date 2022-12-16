@@ -17,8 +17,9 @@ function handleTopAndBottomPressure() {
         
         if ($session.topDavl <= 40 || $session.bottomDavl <= 60 || $session.topDavl >= 300 || $session.bottomDavl >= 180) {
             sendTextResponse("Пожалуйста, назовите давление от сорока на шестьдесят до трехсот на сто восемьдесят");
-            $reactions.transition({value: "/newNode_1", deferred: true});
-            
+            $reactions.transition({value: "/newNode_1", deferred: false});
+            $session.topDavl = null;
+            $session.bottomDavl = null;
             return;
         }
         
