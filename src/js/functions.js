@@ -158,7 +158,6 @@ function validatePressure(value, isTop) {
         if (value < 40 || value > 300) {
             
             $session.topDavl = null;
-            $session.bottomDavl = null;
             $reactions.transition('/newNode_1');
             
             return false;
@@ -170,7 +169,6 @@ function validatePressure(value, isTop) {
          if (value < 60 || value > 180) {
             
             $session.bottomDavl = null;
-            $session.topDavl = null;
             $reactions.transition('/newNode_1');
             
             return false;
