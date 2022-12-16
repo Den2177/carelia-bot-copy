@@ -16,7 +16,7 @@ function handleTopAndBottomPressure() {
         $session.bottomDavl = $parseTree.value;
         
         if ($session.topDavl <= 40 || $session.bottomDavl <= 60 || $session.topDavl >= 300 || $session.bottomDavl >= 180) {
-            sendTextResponse("Вы назвали некорректное число");
+            sendTextResponse("Пожалуйста, назовите давление от сорока на шестьдесят до трехсот на сто восемьдесят");
             $reactions.transition('/newNode_1');
             
             return;
