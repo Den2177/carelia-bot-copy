@@ -22,7 +22,6 @@ function handleTopAndBottomPressure() {
 function handleFullPressure() {
     var $parseTree = $jsapi.context().parseTree;
     
-    sendTextResponse($parseTree.Number[0].value + '/' + $parseTree.Number[1].value);
     $reactions.transition('/newNode_2');
 }
 
@@ -79,6 +78,7 @@ function sendData() {
     if (response.isOk) {
         $reactions.transition("/newNode_31");
     }
+    echo(response);
 }
 
 function getPatientId() {
