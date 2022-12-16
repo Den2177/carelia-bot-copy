@@ -1,6 +1,6 @@
 theme: /
     state: newNode_0
-        a: {{getName()}}, добрый день! Вас приветствует центр дистанционного контроля состояния здоровья пациентов. || tts = "{{getName()}}, добрый день! Вас приветствует центр дистанционного контроля состояния здоровья пациентов.", ttsEnabled = true
+        a: {{getName()}} Добрый день! Вас приветствует центр дистанционного контроля состояния здоровья пациентов. || tts = "{{getName()}}, добрый день! Вас приветствует центр дистанционного контроля состояния здоровья пациентов.", ttsEnabled = true
         a: Подскажите, удобно  вам сейчас ответить на ряд вопросов касательно  вашего состояния? || tts = "Подскажите, удобно  вам сейчас ответить на ряд вопросов касательно  вашего состояния?", ttsEnabled = true
         go!: /newNode_23
         
@@ -23,11 +23,15 @@ theme: /
         a: Назовите свое артериальное давление
         
         state: fullPressure
-            q: * $Number *
+            q: * $Number на $Number *
+            q: * $Number и $Number *
+            q: * $Number and $Number *
+            
             script: 
                 handleFullPressure();
                 
         state: onePartPressure
+            q: * $Number *
             script:
                 handleTopAndBottomPressure();
             
@@ -286,17 +290,8 @@ theme: /
             then = /newNode_52    
 
     state: zapros
-        HttpRequest:
-            url = https://api.dev.doctis.app/api/remote-monitoring/calling_result
-            method = POST
-            dataType = 
-            body = {"name": "{{getName()}}", "ff94ed3a-7ce8-4952-b731-0435d58e6110": "{{$session.artDavl}}","285ba85f-eb0e-4401-b5b5-28fa332ad74e": "{{$session.puls}}","bf860574-61ee-4ddb-b4f3-ec2e04f62e33":"{{$session.angBol}}", "0e262c5a-cf95-4239-890e-b2a0ec73d09d": "{{$session.pristup}}","3b78b736-8d2a-4b52-b716-7b770e8fb29a": "{{$session.nitrat}}","440fbd2c-279c-4f59-96f4-c65095adaedd": "{{$session.dyspnea}}","2f0ddee1-2056-4496-9c44-68815da4cade": "{{$session.oteki}}","patient_id": "{{$session.rawRequest.originateData.payload.patient_id}}", "call_id": "{{$session.rawRequest.originateData.payload.call_id}}"}
-            # headers = [{"ApiKey":"a9db7c01-e309-4a61-b04d-faffdfd020c0"}]
-            okState = /newNode_31
-            errorState = 
-            timeout = 0
-            vars =  
-
+        script: 
+            sendData();
     state: newNode_31
         EndSession:
     

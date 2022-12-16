@@ -1,6 +1,6 @@
 name: zb-cailapub
 
-entryPoint: main.sc
+entryPoint: index.sc
 
 botEngine: v2
 language: ru

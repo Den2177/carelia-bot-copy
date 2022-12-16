@@ -5,5 +5,5 @@ require: number/number.sc
 require: zenflow.sc
   module = sys.zfl-common
 require: main.sc
-
-require: patterns1.sc
+require: js/functions.js
+require: patterns.sc

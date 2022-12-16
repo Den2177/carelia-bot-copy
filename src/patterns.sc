@@ -3,7 +3,7 @@
 # require: ../number/number.sc
 # require: ../common.js
 # require: phoneNumber.js
-require: main.js
+require: js/converters.js
 
 patterns:
     
