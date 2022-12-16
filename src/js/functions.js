@@ -98,6 +98,8 @@ function sendData() {
         call_id: getCallId(),
     }
     
+    echo(bodyData);
+    
     var response = $http.post("https://api.dev.doctis.app/api/remote-monitoring/calling_result", {
         dataType: 'json',
         body: bodyData,
