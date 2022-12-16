@@ -2,6 +2,8 @@ function handleTopAndBottomPressure() {
     var $session = ctx().session;
     var $parseTree = ctx().parseTree;
     
+    
+    
     if (!$session.topDavl) {
         $session.topDavl = $parseTree.value; 
         sendTextResponse("А теперь назовите нижнее артериальное давление");
@@ -12,6 +14,14 @@ function handleTopAndBottomPressure() {
     
     if (!$session.bottomDavl) {
         $session.bottomDavl = $parseTree.value;
+        
+        if ($session.topDavl <= 40 || $session.bottomDavl <= 60 || $session.topDavl >= 300 || $session.bottomDavl >= 180) {
+            sendTextResponse("Вы назвали некорреткое число");
+            $reactions.transition('/newNode_1');
+            
+            return;
+        }
+        
         $session.artDavl = $session.topDavl + '/' + $session.bottomDavl;
         $reactions.transition({value: "/newNode_2", deferred: false});
 
@@ -19,8 +29,24 @@ function handleTopAndBottomPressure() {
     }
 }
 
+function validatePressure() {
+    
+    return true;
+}
+
 function handleFullPressure() {
-    var $parseTree = $jsapi.context().parseTree;
+    var $parseTree = ctx().parseTree;
+    var $session = ctx().session;
+    var topDavl = $parseTree.Number[0].value;
+    var bottomDavl = $parseTree.Number[1].value;
+    
+    if (topDavl <= 40 || bottomDavl <= 60 || topDavl >= 300 || bottomDavl >= 180) {
+        sendTextResponse("Вы назвали некорреткое число");
+        $reactions.transition('/newNode_1');
+        return;
+    }
+    
+    $session.artDavl = topDavl + '/' + bottomDavl;
     
     $reactions.transition('/newNode_2');
 }
@@ -78,6 +104,7 @@ function sendData() {
     if (response.isOk) {
         $reactions.transition("/newNode_31");
     }
+    
     echo(response);
 }
 
