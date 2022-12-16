@@ -41,7 +41,7 @@ function handleFullPressure() {
     var bottomDavl = $parseTree.Number[1].value;
     
     if (topDavl <= 40 || bottomDavl <= 60 || topDavl >= 300 || bottomDavl >= 180) {
-        sendTextResponse("Вы назвали некорреткое число");
+        sendTextResponse("Пожалуйста, назовите давление от сорока на шестьдесят до трехсот на сто восемьдесят");
         $reactions.transition('/newNode_1');
         return;
     }
