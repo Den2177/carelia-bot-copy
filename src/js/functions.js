@@ -3,6 +3,11 @@ function handleTopAndBottomPressure() {
     var $parseTree = ctx().parseTree;
     
     if (!$session.topDavl) {
+        
+        var topDavl = $parseTree.value;
+        
+        if (!validatePressure(topDavl, true)) return;
+        
         $session.topDavl = $parseTree.value; 
         sendTextResponse("А теперь назовите нижнее артериальное давление");
         $reactions.transition({value: "/newNode_1", deferred: true});
@@ -11,19 +16,15 @@ function handleTopAndBottomPressure() {
     }
     
     if (!$session.bottomDavl) {
-        $session.bottomDavl = $parseTree.value;
+        var bottomDavl = $parseTree.value;
         
-        if ($session.topDavl <= 40 || $session.bottomDavl <= 60 || $session.topDavl >= 300 || $session.bottomDavl >= 180) {
-            sendTextResponse("Пожалуйста, назовите давление от сорока на шестьдесят до трехсот на сто восемьдесят");
-            $reactions.transition({value: "/newNode_1", deferred: false});
-            $session.topDavl = null;
-            $session.bottomDavl = null;
-            return;
-        }
+        if (!validatePressure(bottomDavl, false)) return;
+        
+        $session.bottomDavl = bottomDavl;
         
         $session.artDavl = $session.topDavl + '/' + $session.bottomDavl;
         $reactions.transition({value: "/newNode_2", deferred: false});
-
+        
         return;
     }
 }
@@ -31,10 +32,13 @@ function handleTopAndBottomPressure() {
 function handleFullPressure() {
     var $parseTree = ctx().parseTree;
     var $session = ctx().session;
+    
     var topDavl = $parseTree.Number[0].value;
     var bottomDavl = $parseTree.Number[1].value;
     
-    if (!validatePressure(topDavl) && !validatePressure(bottomDavl, false)) return;
+    if (!validatePressure(topDavl, true) || !validatePressure(bottomDavl, false)) {
+        return;
+    }
     
     $session.artDavl = topDavl + '/' + bottomDavl;
     
@@ -139,11 +143,14 @@ function changeOwnerType() {
     echo(response);
 }
 
-function validatePressure(value, isTop = true) {
+function validatePressure(value, isTop) {
+    var $session = ctx().session;
+
     if (isTop) {
         if (value < 40 || value > 300) {
             sendTextResponse("Пожалуйста, назовите давление от сорока на шестьдесят до трехсот на сто восемьдесят");
             $session.topDavl = null;
+            $session.bottomDavl = null;
             $reactions.transition('/newNode_1');
             
             return false;
@@ -155,6 +162,7 @@ function validatePressure(value, isTop = true) {
          if (value < 60 || value > 180) {
             sendTextResponse("Пожалуйста, назовите давление от сорока на шестьдесят до трехсот на сто восемьдесят");
             $session.bottomDavl = null;
+            $session.topDavl = null;
             $reactions.transition('/newNode_1');
             
             return false;
