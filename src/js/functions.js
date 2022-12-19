@@ -151,7 +151,7 @@ function changeOwnerType() {
     if (resposne.isOk) {
         $reactions.transition("/newNode_32");
     } else {
-        sendTextResponse("Произошла ошибка на стороне сервера");
+        sendTextResponse("Произошла ошибка, перезвоните попозже");
     }
     
     echo(response);

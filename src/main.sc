@@ -312,7 +312,6 @@ theme: /
     state: newNode_87
         state: 1
             q: $SWITCH
-
             go!: /zapros1
     state: newNode_56
         state: 1
@@ -320,7 +319,6 @@ theme: /
             q!: помогите*
             q!: человек*
             q!: умираю*
-            
 
             go!: /zapros1
     state: newNode_149
@@ -330,4 +328,7 @@ theme: /
             
     state: redirectToOperator
         q!: $SWITCH
+        q!: $canthear
+        q!: * оператор *
+        q!: * переведите на*
         go!: /newNode_86
