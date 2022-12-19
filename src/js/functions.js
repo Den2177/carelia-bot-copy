@@ -152,9 +152,6 @@ function changeOwnerType() {
         $reactions.transition("/newNode_32");
     }
     
-    
-    
-    
     echo(response);
 }
 
