@@ -148,7 +148,12 @@ function changeOwnerType() {
         body: bodyData,
     });
     
-    $reactions.transition("/newNode_32");
+    if (resposne.isOk) {
+        $reactions.transition("/newNode_32");
+    }
+    
+    
+    
     
     echo(response);
 }

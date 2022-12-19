@@ -75,7 +75,7 @@ theme: /
             failureMessage = ["Назовите цифру вашего пульса от 70 до 220"]
             then = /newNode_3
             minValue = 70
-            maxValue = 250
+            maxValue = 220
             html = Скажите, пожалуйста, максимальный пульс, измеренный в покое ?
             htmlEnabled = false
             failureMessageHtml = ["Назовите цифру вашего пульса от 70 до 220"]
