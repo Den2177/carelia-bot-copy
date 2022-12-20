@@ -150,7 +150,7 @@ function changeOwnerType() {
         body: bodyData,
     });
     
-    if (resposne.isOk) {
+    if (response.isOk) {
         $reactions.transition("/newNode_32");
     } else {
         sendTextResponse("Произошла ошибка, перезвоните попозже");
