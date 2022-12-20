@@ -12,7 +12,7 @@ function handleTopAndBottomPressure() {
         }
         
         $session.topDavl = $parseTree.value; 
-        sendTextResponse("А теперь назовите нижнее артериальное давление");
+        sendTextResponse("Вы назвали только верхнее артериальное давление. Осталось назвать нижнее");
         $reactions.transition({value: "/newNode_1", deferred: true});
         
         return;
@@ -107,6 +107,8 @@ function sendData() {
     
     if (response.isOk) {
         $reactions.transition("/newNode_31");
+    } else {
+        $reactions.transition("Произошла ошибка, попробуйте пройти тест заного");
     }
     
     echo(response);
