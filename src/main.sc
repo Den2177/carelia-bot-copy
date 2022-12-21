@@ -285,6 +285,8 @@ theme: /
 
     state: newNode_21
         a: Спасибо за Ваши ответы, информация будет передана вашему лечащему врачу, всего вам доброго! || tts = "Спасибо за Ваши ответы, информация будет передана вашему лечащему врачу, всего вам доброго!", ttsEnabled = true
+        script: 
+            $dialer.hangUp();
         go!: /zapros
     
     state: newNode_99
@@ -294,7 +296,7 @@ theme: /
 
     state: zapros
         script: 
-            $dialer.hangUp();
+            
             sendData();
     state: newNode_31
         EndSession:
