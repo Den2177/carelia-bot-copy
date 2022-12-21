@@ -336,4 +336,5 @@ theme: /
         q!: $canthear
         q!: * оператор *
         q!: * переведите на*
+        intent!: /Оператор
         go!: /newNode_86

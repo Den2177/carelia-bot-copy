@@ -37,6 +37,56 @@
       "refs" : [ ]
     },
     "priority" : 0
+  }, {
+    "path" : "/Оператор",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "$serviceHelperHuman"
+    }, {
+      "text" : "$switchToOperator"
+    }, {
+      "text" : "переведите на оператора"
+    }, {
+      "text" : "перевод"
+    }, {
+      "text" : "оператор"
+    }, {
+      "text" : "меня выписали"
+    }, {
+      "text" : "я выписался"
+    }, {
+      "text" : "я не болею"
+    }, {
+      "text" : "Отрицательный*"
+    }, {
+      "text" : "помогите*"
+    }, {
+      "text" : "человек*"
+    }, {
+      "text" : "умираю*"
+    }, {
+      "text" : "Я хочу отказаться от мониторинга"
+    }, {
+      "text" : "Не хочу чтоб вы звонили"
+    }, {
+      "text" : "не звоните мне больше"
+    }, {
+      "text" : "Хочу отказаться от дистанционного обзвона"
+    }, {
+      "text" : "отказаться от мониторинга"
+    }, {
+      "text" : "Отказ*"
+    }, {
+      "text" : "помогите"
+    }, {
+      "text" : "Умираю"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
   } ],
   "entities" : [ ],
   "enabledSystemEntities" : [ "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url" ],
