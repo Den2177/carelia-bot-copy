@@ -86,7 +86,8 @@ function sendData() {
     var $session = ctx().session;
     
     var bodyData = {
-        "ff94ed3a-7ce8-4952-b731-0435d58e6110": $session.artDavl,
+        "a34f2480-0e2d-49b8-af88-7724890aff5b": $session.topDavl,
+        "e78c3c0b-6996-4130-bc3d-be6ace32ff53": $session.bottomDavl,
         "285ba85f-eb0e-4401-b5b5-28fa332ad74e": $session.puls,
         "bf860574-61ee-4ddb-b4f3-ec2e04f62e33": $session.angBol,
         "0e262c5a-cf95-4239-890e-b2a0ec73d09d": $session.pristup,
