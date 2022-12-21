@@ -146,6 +146,7 @@ function changeOwnerType() {
         callId: getCallId(),
     }
     
+    
     var response = $http.post("https://api.dev.doctis.app/api/remote-monitoring/change_owner_type", {
         dataType: 'json',
         body: bodyData,
