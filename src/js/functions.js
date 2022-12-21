@@ -27,8 +27,6 @@ function handleTopAndBottomPressure() {
         }
         
         $session.bottomDavl = bottomDavl;
-        
-        $session.artDavl = $session.topDavl + '/' + $session.bottomDavl;
         $reactions.transition({value: "/newNode_2", deferred: false});
         
         return;
@@ -46,9 +44,9 @@ function handleFullPressure() {
         sendTextResponse("Пожалуйста, назовите давление от сорока на шестьдесят до триста на сто восьмидесят");
         return;
     }
-    
-    
-    $session.artDavl = topDavl + '/' + bottomDavl;
+
+    $session.topDavl = topDavl;
+    $session.bottomDavl = bottomDavl;
     
     $reactions.transition('/newNode_2');
 }
