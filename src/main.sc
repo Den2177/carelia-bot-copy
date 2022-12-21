@@ -17,7 +17,12 @@ theme: /
             q: нет*
             q: неа*
 
-            go!: /
+            go!: /otkaz_ot_zvonka
+            
+    state: otkaz_ot_zvonka
+        a: Хорошо, мы свяжемся с вами позже. Всего вам доброго.
+        script: 
+            $dialer.hangUp();
 
     state: newNode_1
         a: Назовите свое артериальное давление
