@@ -1,6 +1,10 @@
+function с() {
+    return $jsapi.context();
+}
+
 function handleTopAndBottomPressure() {
-    var $session = c().session;
-    var $parseTree = c().parseTree;
+    var $session = с().session;
+    var $parseTree = с().parseTree;
     
     if (!$session.topDavl) {
         
@@ -66,9 +70,7 @@ function sendTextResponse(text) {
     });
 }
 
-function с() {
-    return $jsapi.context();
-}
+
 // HttpRequest:
 //             url = https://api.dev.doctis.app/api/remote-monitoring/calling_result
 //             method = POST
