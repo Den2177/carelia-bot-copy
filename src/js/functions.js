@@ -1,10 +1,6 @@
-function с() {
-    return $jsapi.context();
-}
-
 function handleTopAndBottomPressure() {
-    var $session = с().session;
-    var $parseTree = с().parseTree;
+    var $session = ctx().session;
+    var $parseTree = ctx().parseTree;
     
     if (!$session.topDavl) {
         
@@ -37,9 +33,13 @@ function handleTopAndBottomPressure() {
     }
 }
 
+function ctx() {
+    return $jsapi.context();
+}
+
 function handleFullPressure() {
-    var $parseTree = c().parseTree;
-    var $session = c().session;
+    var $parseTree = ctx().parseTree;
+    var $session = ctx().session;
     
     var topDavl = $parseTree.Number[0].value;
     var bottomDavl = $parseTree.Number[1].value;
@@ -83,7 +83,7 @@ function sendTextResponse(text) {
 //             vars =  
 
 function sendData() {
-    var $session = c().session;
+    var $session = ctx().session;
     
     var bodyData = {
         "a34f2480-0e2d-49b8-af88-7724890aff5b": $session.topDavl,
@@ -139,7 +139,7 @@ function echo(data) {
             vars = */
             
 function changeOwnerType() {
-    var $session = c().session;
+    var $session = ctx().session;
     
     var bodyData = {
         ownerType: "0",
@@ -161,7 +161,7 @@ function changeOwnerType() {
 }
 
 function validatePressure(value, isTop) {
-    var $session = c().session;
+    var $session = ctx().session;
 
     if (isTop) {
         if (value < 40 || value > 300) {
@@ -189,10 +189,10 @@ function validatePressure(value, isTop) {
 
 
 function handleNumbers(min, max, nextNode, field, failureMessage) {
-    var number = +c().parseTree._Number;
-    var $session = c().session;
+    var number = +ctx().parseTree._Number;
+    var $session = ctx().session;
     
-    if (number < min || nubmer > max) {
+    if (number < min || number > max) {
         sendResponse(failureMessage);
         return;
     }

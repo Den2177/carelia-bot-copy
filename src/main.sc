@@ -185,15 +185,6 @@ theme: /
         # Transition /newNode_14
         go!: /newNode_9
 
-    state: newNode_15
-        InputText:
-            actions = [{"buttons":[],"type":"buttons"}]
-            prompt = 
-            varName = dypnesia
-            html = 
-            htmlEnabled = false
-            then = /newNode_9
-
     state: newNode_9
         a: Есть ли у Вас отеки на ногах? || tts = "Есть ли у Вас отеки на ногах?", ttsEnabled = true
         go!: /newNode_10
@@ -254,15 +245,6 @@ theme: /
         # Transition /newNode_30
         go!: /newNode_21
 
-    state: newNode_22
-        InputText:
-            actions = [{"buttons":[],"type":"buttons"}]
-            prompt = 
-            varName = oteki
-            html = 
-            htmlEnabled = false
-            then = /newNode_21
-
     state: newNode_27
         script:
             $session.oteki = 0;
@@ -282,7 +264,6 @@ theme: /
 
     state: zapros
         script: 
-            
             sendData();
     state: newNode_31
         EndSession:
