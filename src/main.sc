@@ -73,8 +73,7 @@ theme: /
         a: {{$session.polis}}
         go!: /23
 
-    state: newNode_2
-        InputNumber:
+/*InputNumber:
             actions = [{"buttons":[],"type":"buttons"}]
             prompt = Скажите, пожалуйста, максимальный пульс, измеренный в покое ?
             varName = puls
@@ -84,7 +83,16 @@ theme: /
             maxValue = 220
             html = Скажите, пожалуйста, максимальный пульс, измеренный в покое ?
             htmlEnabled = false
-            failureMessageHtml = ["Назовите цифру вашего пульса от 70 до 220"]
+            failureMessageHtml = ["Назовите цифру вашего пульса от 70 до 220"]*/
+            
+    state: newNode_2
+        a: Скажите, пожалуйста, максимальный пульс, измеренный в покое ?
+        
+        state: answer
+            q: $Number
+            q: * $Number *
+            script:
+                handleNumbers(70, 220, "/newNode_3", "puls", "Назовите цифру вашего пульса от 70 до 220");
 
     state: newNode_3
         a: Беспокоят ли Вас давящие, сжимающие  боли в области сердца, в течение недели? || tts = "Беспокоят ли Вас давящие, сжимающие  боли в области сердца, в течение недели?", ttsEnabled = true
@@ -114,15 +122,7 @@ theme: /
         state: Fallback
             event: noMatch
             go!: /newNode_86
-    state: newNode_26
-        InputText:
-            actions = [{"buttons":[],"type":"buttons"}]
-            prompt = 
-            varName = angBol
-            html = 
-            htmlEnabled = false
-            then = /newNode_6
-
+            
     state: newNode_24
         script:
             $session.angBol = "Нет";
@@ -138,30 +138,22 @@ theme: /
         go!: /newNode_5
 
     state: newNode_5
-        InputNumber:
-            actions = [{"buttons":[],"type":"buttons"}]
-            prompt = Сообщите, пожалуйста, количество приступов сжимающей боли?
-            varName = pristup
-            failureMessage = ["Назовите количество приступов от 0 до 20"]
-            then = /newNode_7
-            minValue = 0
-            maxValue = 20
-            html = Сообщите, пожалуйста, количество приступов сжимающей боли?
-            htmlEnabled = false
-            failureMessageHtml = ["Назовите количество приступов от 0 до 20"]
+        a: Сообщите, пожалуйста, количество приступов сжимающей боли?
+        
+        state: answer
+            q: $Number
+            q: * $Number *
+            script:
+                handleNumbers(0, 20, "/newNode_7", "pristup", "Назовите количество приступов от 0 до 20");
 
     state: newNode_7
-        InputNumber:
-            actions = [{"buttons":[],"type":"buttons"}]
-            prompt = Cколько приступов сжимающей боли вы купировали нитратами?
-            varName = nitrat
-            failureMessage = ["Назовите цифру, от 0 до 20 cколько приступов сжимающей боли вы купировали нитратами?"]
-            then = /newNode_6
-            minValue = 0
-            maxValue = 20
-            html = Cколько приступов сжимающей боли вы купировали нитратами?
-            htmlEnabled = false
-            failureMessageHtml = ["назовите цифру, от 0 до 20 сколько приступов сжимающей боли вы купировали нитратами?"]
+        a: Cколько приступов сжимающей боли вы купировали нитратами?
+        
+        state: answer
+            q: $Number
+            q: * $Number *
+            script: 
+                handleNumbers(0, 20, "/newNode_6", "nitrat", "назовите цифру, от 0 до 20 сколько приступов сжимающей боли вы купировали нитратами?");
 
     state: newNode_6
         a: Отмечаете ли Вы появление или нарастание одышки? || tts = "Отмечаете ли Вы появление или нарастание одышки?", ttsEnabled = true

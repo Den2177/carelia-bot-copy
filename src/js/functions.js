@@ -144,7 +144,6 @@ function changeOwnerType() {
         callId: getCallId(),
     }
     
-    
     var response = $http.post("https://api.dev.doctis.app/api/remote-monitoring/change_owner_type", {
         dataType: 'json',
         body: bodyData,
@@ -184,4 +183,18 @@ function validatePressure(value, isTop) {
         
         return true;
     }
+}
+
+
+function handleNumbers(min, max, nextNode, field, failureMessage) {
+    var number = +c().parseTree._Number;
+    var $session = c().session;
+    
+    if (number < min || nubmer > max) {
+        sendResponse(failureMessage);
+        return;
+    }
+    
+    $session[field] = number;
+    $reactions.transition(nextNode);
 }
