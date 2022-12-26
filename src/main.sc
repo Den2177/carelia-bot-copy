@@ -72,18 +72,6 @@ theme: /
     state: prov
         a: {{$session.polis}}
         go!: /23
-
-/*InputNumber:
-            actions = [{"buttons":[],"type":"buttons"}]
-            prompt = Скажите, пожалуйста, максимальный пульс, измеренный в покое ?
-            varName = puls
-            failureMessage = ["Назовите цифру вашего пульса от 70 до 220"]
-            then = /newNode_3
-            minValue = 70
-            maxValue = 220
-            html = Скажите, пожалуйста, максимальный пульс, измеренный в покое ?
-            htmlEnabled = false
-            failureMessageHtml = ["Назовите цифру вашего пульса от 70 до 220"]*/
             
     state: newNode_2
         a: Скажите, пожалуйста, максимальный пульс, измеренный в покое ?
